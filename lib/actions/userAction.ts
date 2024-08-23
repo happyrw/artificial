@@ -5,6 +5,23 @@ import { handleError } from "../utils";
 import { connectDB } from "../mongoose";
 import User from "../models/userModel";
 
+type CreateUserParams = {
+    clerkId: string;
+    email: string;
+    username: string;
+    firstName: string | null;
+    lastName: string | null;
+    photo: string;
+};
+
+type UpdateUserParams = {
+    firstName: string | null;
+    lastName: string | null;
+    username: string;
+    photo: string;
+}
+
+
 // CREATE
 export async function createUser(user: CreateUserParams) {
     try {
