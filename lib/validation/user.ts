@@ -6,3 +6,11 @@ export const UserValidation = z.object({
     username: z.string().min(3).max(30),
     bio: z.string().min(3).max(1000),
 });
+
+export const formSchema = z.object({
+    title: z.string(),
+    publicId: z.string().optional(),
+    aspectRatio: z.string().optional(),
+    color: z.string().optional(),
+    prompt: z.string(),
+});

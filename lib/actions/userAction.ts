@@ -2,8 +2,8 @@
 
 import { revalidatePath } from "next/cache";
 import { handleError } from "../utils";
-import { connectDB } from "../mongoose";
 import User from "../models/userModel";
+import { connectDB } from "../mongoose";
 
 type CreateUserParams = {
     clerkId: string;
@@ -25,9 +25,23 @@ type UpdateUserParams = {
 // CREATE
 export async function createUser(user: CreateUserParams) {
     try {
+        console.log("Missing connection above")
         await connectDB();
+        console.log("Missing connection")
 
-        const newUser = await User.create(user);
+        // Check if firstName and lastName are empty strings, and if so, set them to null
+        const newUserParams = {
+            ...user,
+            firstName: user.firstName === "" ? null : user.firstName,
+            lastName: user.lastName === "" ? null : user.lastName,
+        };
+
+        const existingUser = await User.findOne({ username: user.username });
+        if (existingUser) {
+            throw new Error(`User with username ${user.username} already exists.`);
+        }
+
+        const newUser = await User.create(newUserParams);
 
         return JSON.parse(JSON.stringify(newUser));
     } catch (error) {
