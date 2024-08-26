@@ -335,7 +335,7 @@
 
   /* TransformationForm Component */
   .prompt-field {
-    @apply flex flex-col gap-5 lg:flex-row lg:gap-10;
+    @apply flex items-center flex-col gap-5 lg:flex-row lg:gap-10;
   }
 
   .media-uploader-field {

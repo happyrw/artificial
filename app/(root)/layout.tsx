@@ -4,6 +4,7 @@ import Sidebar from "@/components/shared/sidebar";
 import { IBM_Plex_Sans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import MobileNav from "@/components/shared/mobilenav";
+import { Toaster } from "@/components/ui/toaster";
 
 const IBMPlex = IBM_Plex_Sans({
   subsets: ['latin'],
@@ -27,6 +28,7 @@ export default function RootLayout({
               {children}
             </div>
           </div>
+          <Toaster />
         </main>
       </body>
     </html>

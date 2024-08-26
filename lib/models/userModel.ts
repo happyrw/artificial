@@ -14,6 +14,3 @@ const UserSchema = new Schema({
 const User = models?.User || model("User", UserSchema);
 
 export default User;
-
-// Update user model
-// await User.findByIdAndUpdate(author, { $push: { posts: createdPost._id }})
