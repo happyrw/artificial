@@ -23,11 +23,13 @@ export default function RootLayout({
         >
             <html lang="en">
                 <Head>
-                    <script
-                        async
-                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6529864147696481"
-                        crossOrigin="anonymous"
-                    ></script>
+                    {process.env.NODE_ENV === 'production' && (
+                        <script
+                            async
+                            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6529864147696481"
+                            crossOrigin="anonymous"
+                        ></script>
+                    )}
                 </Head>
                 <body>
                     {children}
