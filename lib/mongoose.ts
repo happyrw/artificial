@@ -9,6 +9,7 @@ export const connectDB = async () => {
         console.log('MONGODB_URL not found');
         return;
     };
+
     if (isConnected) {
         console.log('Already connected to MongoDB');
         return;

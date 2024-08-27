@@ -15,6 +15,7 @@ export async function POST(req: Request) {
         );
     }
 
+    // Get the headers
     const headerPayload = headers();
     const svix_id = headerPayload.get("svix-id");
     const svix_timestamp = headerPayload.get("svix-timestamp");
@@ -27,15 +28,16 @@ export async function POST(req: Request) {
         });
     }
 
+    // Get the body
     const payload = await req.json();
     const body = JSON.stringify(payload);
 
-    console.log("Received payload:", payload); // Log the received payload
-
+    // Create a new Svix instance with your secret
     const wh = new Webhook(WEBHOOK_SECRET);
 
     let evt: WebhookEvent;
 
+    // Verify the payload with the headers
     try {
         evt = wh.verify(body, {
             "svix-id": svix_id,
@@ -52,8 +54,6 @@ export async function POST(req: Request) {
 
     const { id } = evt.data;
     const eventType = evt.type;
-
-    console.log(`Handling event of type: ${eventType}`); // Log the event type
 
     // CREATE
     if (eventType === "user.created") {
